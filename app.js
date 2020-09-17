@@ -1,6 +1,8 @@
-// Get the elements you'll need from your HTML -Completed-
+// Get the elements you'll need from your HTML
 
 const qwerty = document.getElementById("qwerty");
+const keyrow = document.getElementsByClassName("keyrow");
+const button = document.getElementsByTagName("button");
 const phrase = document.getElementById("phrase");
 
 const startGame = document.getElementsByClassName("btn__reset");
@@ -8,18 +10,14 @@ const overlay = document.getElementById("overlay");
 
 const missed = 0; // if the player guesses wrong 5 times, they lose the game
 
-// Create an array named phrases. -Completed-
+// Create an array named phrases.
+// Complete
 const phrases = [
-  "I",
-  "Solemnly",
-  "Swear",
-  "that",
-  "I",
-  "am",
-  "up",
-  "to",
-  "no",
-  "good",
+  "My Name Is Jeff",
+  "Fresh Prince of Bel Air",
+  "The Sky Is The Limit",
+  "To Kill A Mockingbird",
+  "Just Do It",
 ];
 
 // Loop Through an Array
@@ -29,27 +27,38 @@ const phrases = [
 //     items += ``;
 //   }
 // }
+
 // Attach a event listener to the "Start Game" button to hide the start screen overlay
-function y() {
-  startGame.addEventListener("click", () => {
-    if (overlay.style.display == "block") {
-      overlay.style.display = "none";
-    }
-  });
-}
+// Complete
+startGame[0].addEventListener("click", () => {
+  overlay.style.display = "none";
+});
 
 // Create a getRandomPhraseAsArray function
 // incomplete
-function getRandomPhraseAsArray(phrases) {
-  const randomNumber = phrases.length;
-  randomNumber[0];
-  return randomNumber;
-}
+const getRandomPhraseAsArray = (arr) => {
+  const randomArr = Math.floor(Math.random() * phrases.length);
+  randomArr[0];
+  getRandomPhraseAsArray(phrases);
+  arr[0];
+};
 
 // Set the game display
-const addPhraseToDisplay = (arr) => {};
-
+// incomplete
+const addPhraseToDisplay = (arr) => {
+  for (let i = 0; i < phrases.length; i++) {
+    const li = document.createElement("li");
+    phrase.appendChild(phrase.ul);
+    if (li == letter) {
+      li.className = "letter";
+    }
+  }
+  const phraseArray = getRandomPhraseAsArray(phrases);
+  addPhraseToDisplay(phraseArray);
+};
+// console.log(phrases[0].split(""));
 // Create a checkLetter function
+// incomplete
 const checkLetter = (button) => {
   const li = getElementsByTagName("li");
   const matchFound = "";
@@ -65,8 +74,38 @@ const checkLetter = (button) => {
 };
 
 // Add an event Listener to the keyboard
-qwerty.addEventListener("click", (e) => {});
+// incomplete
+button[0].addEventListener("click", (e) => {
+  button.disabled = true;
+  button.className = "chosen";
+});
+
 // Count the missed guesses in the game
 
 // Create a checkWin function
-// const checkWin = () => {};
+// incomplete
+const checkWin = () => {
+  const liLetter = getElementsByClassName("letter");
+  const liShow = getElementsByClassName("show");
+  /*
+   * Check if the length of the 2 variables are the same. If they are,
+   * display the win overlay
+   */
+
+  // Create the win overlay by adding the "win" class to the start overlay
+
+  // Change the headline text of the start overlay to show a person won.
+
+  // Change the display property of the overlay to "flex"
+
+  /*
+   * Check if the missed counter is greater than 4. If they are,
+   * display the lose overlay
+   */
+
+  // Create the lose overlay by adding the "lose" class to the start overlay
+
+  // Change the headline text of the start overlay to show a person lost.
+
+  // Change the display property of the overlay to "flex"
+};
