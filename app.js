@@ -2,8 +2,9 @@
 
 const qwerty = document.getElementById("qwerty");
 const keyrow = document.getElementsByClassName("keyrow");
-const button = document.getElementsByTagName("button");
-const phrase = document.getElementById("phrase");
+const button = document.querySelectorAll("button");
+
+const phrase = document.querySelector("#phrase ul");
 
 const startGame = document.getElementsByClassName("btn__reset");
 const overlay = document.getElementById("overlay");
@@ -35,39 +36,43 @@ startGame[0].addEventListener("click", () => {
 });
 
 // Create a getRandomPhraseAsArray function
-// incomplete
+// complete
 const getRandomPhraseAsArray = (arr) => {
-  const randomArr = Math.floor(Math.random() * phrases.length);
-  randomArr[0];
-  getRandomPhraseAsArray(phrases);
-  arr[0];
+  const randomArr = arr[Math.floor(Math.random() * phrases.length)];
+  return randomArr.split("");
 };
 
 // Set the game display
-// incomplete
+// complete
 const addPhraseToDisplay = (arr) => {
-  for (let i = 0; i < phrases.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     const li = document.createElement("li");
-    phrase.appendChild(phrase.ul);
-    if (li == letter) {
+    phrase.appendChild(li);
+    li.textContent = arr[i];
+    if (arr[i] !== " ") {
       li.className = "letter";
+    } else {
+      li.className = "space";
     }
   }
-  const phraseArray = getRandomPhraseAsArray(phrases);
-  addPhraseToDisplay(phraseArray);
 };
-// console.log(phrases[0].split(""));
+const phraseArray = getRandomPhraseAsArray(phrases);
+addPhraseToDisplay(phraseArray);
+
 // Create a checkLetter function
 // incomplete
 const checkLetter = (button) => {
-  const li = getElementsByTagName("li");
-  const matchFound = "";
+  const letters = document.getElementsByClassName("letter");
+
+  const matchFound = "letters";
   //loop through all of the li elements. Remember: arrays start with index 0!
-  for (let i = 0; i < li.length; i++) {
+  for (let i = 0; i < letters.length; i++) {
     // Create a conditional that compares the text of the button to li
-    if (button == matchFound) {
+    if (matchFound == button) {
       // if they match, add the "show" class to the li
+      li.className = "show";
     } else {
+      li.className = "";
     }
   }
   return matchFound;
@@ -75,10 +80,11 @@ const checkLetter = (button) => {
 
 // Add an event Listener to the keyboard
 // incomplete
-button[0].addEventListener("click", (e) => {
-  button.disabled = true;
-  button.className = "chosen";
-});
+for (let i = 0; i < button.length; i++)
+  button[i].addEventListener("click", (e) => {
+    button[i].disabled = true;
+    button[i].className = "chosen";
+  });
 
 // Count the missed guesses in the game
 
