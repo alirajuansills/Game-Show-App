@@ -1,6 +1,5 @@
 // Get the elements you'll need from your HTML
 
-const button2 = document.getElementById("qwerty");
 const keyrow = document.getElementsByClassName(".keyrow");
 const button = document.getElementsByTagName("button");
 
@@ -83,6 +82,8 @@ for (let i = 0; i < button.length; i += 1) {
   });
 }
 
+checkLetter();
+
 // Count the missed guesses in the game
 
 // Create a checkWin function
@@ -94,21 +95,24 @@ const checkWin = () => {
    * Check if the length of the 2 variables are the same. If they are,
    * display the win overlay
    */
+  if (liLetter.length == liShow.length) {
+    // Create the win overlay by adding the "win" class to the start overlay
 
-  // Create the win overlay by adding the "win" class to the start overlay
+    overlay.className = "win";
+    // Change the headline text of the start overlay to show a person won.
 
-  // Change the headline text of the start overlay to show a person won.
+    // Change the display property of the overlay to "flex"
+  }
+  if (missed > 4) {
+    /*
+     * Check if the missed counter is greater than 4. If they are,
+     * display the lose overlay
+     */
 
-  // Change the display property of the overlay to "flex"
+    // Create the lose overlay by adding the "lose" class to the start overlay
+    overlay.className = "lose";
+    // Change the headline text of the start overlay to show a person lost.
 
-  /*
-   * Check if the missed counter is greater than 4. If they are,
-   * display the lose overlay
-   */
-
-  // Create the lose overlay by adding the "lose" class to the start overlay
-
-  // Change the headline text of the start overlay to show a person lost.
-
-  // Change the display property of the overlay to "flex"
+    // Change the display property of the overlay to "flex"
+  }
 };
