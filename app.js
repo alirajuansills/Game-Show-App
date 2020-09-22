@@ -4,11 +4,10 @@ const keyrow = document.getElementsByClassName(".keyrow");
 const button = document.getElementsByTagName("button");
 
 const phrase = document.querySelector("#phrase ul");
-
+const liveHeart = document.getElementsByTagName("IMG");
 const startGame = document.getElementsByClassName("btn__reset");
 const overlay = document.getElementById("overlay");
 
-const liveHeart = document.getElementsByTagName("img");
 const tries = document.querySelector("#scoreboard .tries");
 
 let missed = 0; // if the player guesses wrong 5 times, they lose the game
@@ -65,12 +64,25 @@ const checkLetter = (button) => {
 
     if (letter[i].textContent == button) {
       // if they match, add the "show" class to the li
-      let matchFound = letter[i].textContent;
+      matchFound = letter[i].textContent;
       letter[i].classList.add("show");
     }
   }
 
-  console.log(matchFound);
+  if (matchFound === null) {
+    // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_img_create
+    for (let i = 0; i < liveHeart.length; i += 5) {
+      liveHeart[i].style.display = "none";
+      let lostHeart = document.createElement("IMG");
+      lostHeart.setAttribute("src", "images/lostHeart.png");
+      lostHeart.setAttribute("width", "30px");
+      lostHeart.setAttribute("height", "35px");
+      tries.appendChild(lostHeart);
+      break;
+    }
+  }
+
+  console.log(liveHeart);
   return matchFound;
 };
 
@@ -81,21 +93,13 @@ for (let i = 0; i < button.length; i += 1) {
     button[i].disabled = true;
     button[i].className = "chosen";
     checkLetter(button[i].textContent);
-    // console.log(button[i]);
   });
 }
 
-const check = checkLetter();
-// https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_img_create
-if (check !== "letter") {
-  liveHeart[0].style.display = "none";
-  let lostHeart = document.createElement("IMG");
-  lostHeart.setAttribute("src", "images/lostHeart.png");
-  lostHeart.setAttribute("width", "30px");
-  lostHeart.setAttribute("height", "35px");
-  tries.appendChild(lostHeart);
-}
-console.log(check);
+// const check = (matchFound) => {
+//   console.log(matchFound);
+// };
+
 // Count the missed guesses in the game
 
 // Create a checkWin function
