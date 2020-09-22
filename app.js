@@ -53,7 +53,7 @@ const phraseArray = getRandomPhraseAsArray(phrases);
 addPhraseToDisplay(phraseArray);
 
 // Create a checkLetter function
-// incomplete
+// complete
 const checkLetter = (button) => {
   const letter = document.getElementsByClassName("letter");
 
@@ -70,16 +70,8 @@ const checkLetter = (button) => {
   }
 
   if (matchFound === null) {
-    // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_img_create
-    for (let i = 0; i < liveHeart.length; i++) {
-      liveHeart[4].style.display = "none";
-      let lostHeart = document.createElement("IMG");
-      lostHeart.setAttribute("src", "images/lostHeart.png");
-      lostHeart.setAttribute("width", "30px");
-      lostHeart.setAttribute("height", "35px");
-      tries.appendChild(lostHeart);
-      break;
-    }
+    liveHeart[missed].setAttribute("src", "images/lostHeart.png");
+    missed++;
   }
 
   console.log(liveHeart);
@@ -94,19 +86,18 @@ for (let i = 0; i < button.length; i += 1) {
     button[i].className = "chosen";
     checkLetter(button[i].textContent);
   });
-}
 
-// const check = (matchFound) => {
-//   console.log(matchFound);
-// };
+  const liLetter = querySelector(".letter");
+  const liShow = querySelector(".show");
+}
 
 // Count the missed guesses in the game
 
 // Create a checkWin function
 // incomplete
 const checkWin = () => {
-  const liLetter = getElementsByClassName("letter");
-  const liShow = getElementsByClassName("show");
+  const liLetter = querySelector(".letter");
+  const liShow = querySelector(".show");
   /*
    * Check if the length of the 2 variables are the same. If they are,
    * display the win overlay
