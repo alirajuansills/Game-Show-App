@@ -8,16 +8,19 @@ const phrase = document.querySelector("#phrase ul");
 const startGame = document.getElementsByClassName("btn__reset");
 const overlay = document.getElementById("overlay");
 
+const liveHeart = document.getElementsByTagName("img");
+const tries = document.querySelector("#scoreboard .tries");
+
 let missed = 0; // if the player guesses wrong 5 times, they lose the game
 
 // Create an array named phrases.
 // Complete
 const phrases = [
-  "My Name Is Jeff",
-  "Fresh Prince of Bel Air",
-  "The Sky Is The Limit",
-  "To Kill A Mockingbird",
-  "Just Do It",
+  "my name is jeff",
+  "fresh prince of bel air",
+  "the sky is the limit",
+  "to kill a mockingbird",
+  "just do it",
 ];
 
 // Attach a event listener to the "Start Game" button to hide the start screen overlay
@@ -62,8 +65,8 @@ const checkLetter = (button) => {
 
     if (letter[i].textContent == button) {
       // if they match, add the "show" class to the li
-      matchFound = letter[i].textContent;
-      letter[i].className += "show";
+      let matchFound = letter[i].textContent;
+      letter[i].classList.add("show");
     }
   }
 
@@ -82,8 +85,17 @@ for (let i = 0; i < button.length; i += 1) {
   });
 }
 
-checkLetter();
-
+const check = checkLetter();
+// https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_img_create
+if (check !== "letter") {
+  liveHeart[0].style.display = "none";
+  let lostHeart = document.createElement("IMG");
+  lostHeart.setAttribute("src", "images/lostHeart.png");
+  lostHeart.setAttribute("width", "30px");
+  lostHeart.setAttribute("height", "35px");
+  tries.appendChild(lostHeart);
+}
+console.log(check);
 // Count the missed guesses in the game
 
 // Create a checkWin function
