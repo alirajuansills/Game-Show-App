@@ -4,7 +4,7 @@ const keyrow = document.getElementsByClassName(".keyrow");
 const button = document.getElementsByTagName("button");
 
 const phrase = document.querySelector("#phrase ul");
-const liveHeart = document.getElementsByTagName("IMG");
+const liveHeart = document.querySelectorAll("IMG");
 const startGame = document.getElementsByClassName("btn__reset");
 const overlay = document.getElementById("overlay");
 
@@ -71,8 +71,8 @@ const checkLetter = (button) => {
 
   if (matchFound === null) {
     // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_img_create
-    for (let i = 0; i < liveHeart.length; i += 5) {
-      liveHeart[i].style.display = "none";
+    for (let i = 0; i < liveHeart.length; i++) {
+      liveHeart[4].style.display = "none";
       let lostHeart = document.createElement("IMG");
       lostHeart.setAttribute("src", "images/lostHeart.png");
       lostHeart.setAttribute("width", "30px");
