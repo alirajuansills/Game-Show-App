@@ -39,7 +39,7 @@ const getRandomPhraseAsArray = (arr) => {
 const addPhraseToDisplay = (arr) => {
   for (let i = 0; i < arr.length; i++) {
     const li = document.createElement("li");
-    phrase.appendChild(li);
+    phrase.appendChild(li).style.transition = "all 1s ease";
     li.textContent = arr[i];
     if (arr[i] !== " ") {
       li.className = "letter";
@@ -93,8 +93,11 @@ for (let i = 0; i < button.length; i += 1) {
      */
     if (liLetter.length == liShow.length) {
       // Create the win overlay by adding the "win" class to the start overlay
-      overlay.style.display = "block";
+      overlay.style.display = "flex";
       overlay.className = "win";
+
+      document.querySelector("h2").innerHTML = "You Win!";
+      document.querySelector("a").innerHTML = "Play Again";
     }
     /*
      * Check if the missed counter is greater than 4. If they are,
@@ -102,9 +105,15 @@ for (let i = 0; i < button.length; i += 1) {
      */
     if (missed > 4) {
       // Create the lose overlay by adding the "lose" class to the start overlay
-      overlay.style.display = "block";
+      overlay.style.display = "flex";
       overlay.className = "lose";
+
+      document.querySelector("h2").innerHTML = "You Lose!";
+      document.querySelector("a").innerHTML = "Play Again";
     }
     console.log(liLetter);
+    startGame[0].addEventListener("click", () => {
+      location.reload();
+    });
   });
 }
