@@ -6,7 +6,7 @@ const button = document.getElementsByTagName("button");
 const phrase = document.querySelector("#phrase ul");
 const liveHeart = document.querySelectorAll("IMG");
 const startGame = document.getElementsByClassName("btn__reset");
-const overlay = document.getElementById("overlay");
+let overlay = document.getElementById("overlay");
 
 const tries = document.querySelector("#scoreboard .tries");
 
@@ -27,7 +27,6 @@ const phrases = [
 startGame[0].addEventListener("click", () => {
   overlay.style.display = "none";
 });
-
 // Create a getRandomPhraseAsArray function
 // complete
 const getRandomPhraseAsArray = (arr) => {
@@ -74,52 +73,38 @@ const checkLetter = (button) => {
     missed++;
   }
 
-  console.log(liveHeart);
   return matchFound;
 };
 
 // Add an event Listener to the keyboard
 // incomplete
+
 for (let i = 0; i < button.length; i += 1) {
   button[i].addEventListener("click", (e) => {
     button[i].disabled = true;
     button[i].className = "chosen";
     checkLetter(button[i].textContent);
-  });
 
-  const liLetter = querySelector(".letter");
-  const liShow = querySelector(".show");
-}
-
-// Count the missed guesses in the game
-
-// Create a checkWin function
-// incomplete
-const checkWin = () => {
-  const liLetter = querySelector(".letter");
-  const liShow = querySelector(".show");
-  /*
-   * Check if the length of the 2 variables are the same. If they are,
-   * display the win overlay
-   */
-  if (liLetter.length == liShow.length) {
-    // Create the win overlay by adding the "win" class to the start overlay
-
-    overlay.className = "win";
-    // Change the headline text of the start overlay to show a person won.
-
-    // Change the display property of the overlay to "flex"
-  }
-  if (missed > 4) {
+    let liLetter = document.querySelectorAll(".letter");
+    let liShow = document.querySelectorAll(".show");
+    /*
+     * Check if the length of the 2 variables are the same. If they are,
+     * display the win overlay
+     */
+    if (liLetter.length == liShow.length) {
+      // Create the win overlay by adding the "win" class to the start overlay
+      overlay.style.display = "block";
+      overlay.className = "win";
+    }
     /*
      * Check if the missed counter is greater than 4. If they are,
      * display the lose overlay
      */
-
-    // Create the lose overlay by adding the "lose" class to the start overlay
-    overlay.className = "lose";
-    // Change the headline text of the start overlay to show a person lost.
-
-    // Change the display property of the overlay to "flex"
-  }
-};
+    if (missed > 4) {
+      // Create the lose overlay by adding the "lose" class to the start overlay
+      overlay.style.display = "block";
+      overlay.className = "lose";
+    }
+    console.log(liLetter);
+  });
+}
