@@ -6,7 +6,7 @@ const button = document.getElementsByTagName("button");
 const phrase = document.querySelector("#phrase ul");
 const liveHeart = document.querySelectorAll("IMG");
 const startGame = document.getElementsByClassName("btn__reset");
-let overlay = document.getElementById("overlay");
+const overlay = document.getElementById("overlay");
 
 const tries = document.querySelector("#scoreboard .tries");
 
@@ -22,11 +22,6 @@ const phrases = [
   "just do it",
 ];
 
-// Attach a event listener to the "Start Game" button to hide the start screen overlay
-// Complete
-startGame[0].addEventListener("click", () => {
-  overlay.style.display = "none";
-});
 // Create a getRandomPhraseAsArray function
 // complete
 const getRandomPhraseAsArray = (arr) => {
@@ -76,44 +71,64 @@ const checkLetter = (button) => {
   return matchFound;
 };
 
+const checkWin = () => {
+  let liLetter = document.querySelectorAll(".letter");
+  let liShow = document.querySelectorAll(".show");
+  /*
+   * Check if the length of the 2 variables are the same. If they are,
+   * display the win overlay
+   */
+  if (liLetter.length == liShow.length) {
+    // Create the win overlay by adding the "win" class to the start overlay
+    overlay.style.display = "flex";
+    overlay.className = "win";
+
+    document.querySelector("h2").innerHTML = "You Win!";
+    document.querySelector("a").innerHTML = "Play Again";
+  }
+  /*
+   * Check if the missed counter is greater than 4. If they are,
+   * display the lose overlay
+   */
+  if (missed > 4) {
+    // Create the lose overlay by adding the "lose" class to the start overlay
+    overlay.style.display = "flex";
+    overlay.className = "lose";
+
+    document.querySelector("h2").innerHTML = "You Lose!";
+    document.querySelector("a").innerHTML = "Play Again";
+
+    startGame[0].addEventListener("click", () => {
+      addPhraseToDisplay(phraseArray);
+    });
+    const buttonReset = document.createElement("button");
+
+    // buttonReset.textContent = "Play Again";
+    // overlay.appendChild(buttonReset);
+    // buttonReset.className = "btn__reset";
+    // buttonReset.addEventListener("click", () => {
+    //   document.location.reload();
+    //   overlay.style.display = "none";
+    // });
+    console.log(liLetter);
+  }
+};
+
+// Attach a event listener to the "Start Game" button to hide the start screen overlay
+// Complete
+
+startGame[0].addEventListener("click", () => {
+  overlay.style.display = "none";
+});
+
 // Add an event Listener to the keyboard
-// incomplete
+// complete
 
 for (let i = 0; i < button.length; i += 1) {
   button[i].addEventListener("click", (e) => {
     button[i].disabled = true;
     button[i].className = "chosen";
     checkLetter(button[i].textContent);
-
-    let liLetter = document.querySelectorAll(".letter");
-    let liShow = document.querySelectorAll(".show");
-    /*
-     * Check if the length of the 2 variables are the same. If they are,
-     * display the win overlay
-     */
-    if (liLetter.length == liShow.length) {
-      // Create the win overlay by adding the "win" class to the start overlay
-      overlay.style.display = "flex";
-      overlay.className = "win";
-
-      document.querySelector("h2").innerHTML = "You Win!";
-      document.querySelector("a").innerHTML = "Play Again";
-    }
-    /*
-     * Check if the missed counter is greater than 4. If they are,
-     * display the lose overlay
-     */
-    if (missed > 4) {
-      // Create the lose overlay by adding the "lose" class to the start overlay
-      overlay.style.display = "flex";
-      overlay.className = "lose";
-
-      document.querySelector("h2").innerHTML = "You Lose!";
-      document.querySelector("a").innerHTML = "Play Again";
-    }
-    console.log(liLetter);
-    startGame[0].addEventListener("click", () => {
-      location.reload();
-    });
+    checkWin();
   });
 }
