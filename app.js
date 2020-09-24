@@ -99,16 +99,17 @@ const checkWin = () => {
     document.querySelector("a").innerHTML = "Play Again";
 
     startGame[0].addEventListener("click", () => {
-      document.location.reload();
+      // overlay.style.display = "none";
+      window.location.reload;
     });
     const buttonReset = document.createElement("button");
 
     // buttonReset.textContent = "Play Again";
     // overlay.appendChild(buttonReset);
     // buttonReset.className = "btn__reset";
-    // buttonReset.addEventListener("click", () => {
-    //   document.location.reload();
+    // buttonReset.addEventListener("reset", () => {
     //   overlay.style.display = "none";
+    //   reset(addPhraseToDisplay);
     // });
     console.log(liLetter);
   }
@@ -129,8 +130,7 @@ for (let i = 0; i < button.length; i += 1) {
     button[i].disabled = true;
     button[i].className = "chosen";
     checkLetter(button[i].textContent);
+
     checkWin();
   });
 }
-
-const reset = () => {};
