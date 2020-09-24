@@ -99,7 +99,7 @@ const checkWin = () => {
     document.querySelector("a").innerHTML = "Play Again";
 
     startGame[0].addEventListener("click", () => {
-      addPhraseToDisplay(phraseArray);
+      document.location.reload();
     });
     const buttonReset = document.createElement("button");
 
@@ -132,3 +132,5 @@ for (let i = 0; i < button.length; i += 1) {
     checkWin();
   });
 }
+
+const reset = () => {};
